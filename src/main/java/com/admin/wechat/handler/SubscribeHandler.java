@@ -13,6 +13,7 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -46,6 +47,7 @@ public class SubscribeHandler extends AbstractHandler {
       user.setUserNickName(userWxInfo.getNickname());
       user.setUserOpenid(userWxInfo.getOpenId());
       user.setUserSex(userWxInfo.getSex());
+      user.setGmtCreate(new Date());
 
       userInfoService.saveUserInfo(user);
       // TODO 可以添加关注用户到本地
