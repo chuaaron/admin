@@ -1,10 +1,13 @@
-package com.admin.wechat;
+package com.admin.mybatis.mapper;
+
+import com.admin.mybatis.domain.Employee;
+import com.admin.mybatis.util.BaseMapper;
 
 /**
  * <p>Description: </p>
  * <p>Copyright(c) 2017-2019 lyzb.com Inc. All Rights Reserved.</p>
  * <p>Other: </p>
- * <p>Date：2018-04-19 20:52 </p>
+ * <p>Date：2018-04-21 16:28 </p>
  * <p>Modification Record 1: </p>
  * <pre>
  *  Modified Date：
@@ -17,5 +20,5 @@ package com.admin.wechat;
  * @author <a href="wubin3347@gmail.com">wubin</a>
  * @version 1.0.0
  */
-public class t {
+public interface EmployeeMapper extends BaseMapper<Employee> {
 }

@@ -12,14 +12,14 @@ import java.util.Date;
  * <p>Copyright(c) 2017-2019 lyzb.com Inc. All Rights Reserved.</p>
  * <p>Other: </p>
  * <p>Date：2018-04-19 21:17 </p>
- * <p>Modification Record 1: </p>
+ * <p>Modification Order 1: </p>
  * <pre>
  *  Modified Date：
  *  Version：
  *  Modifier：
  *  Modification Content：
  * </pre>
- * <p>Modification Record 2：…</p>
+ * <p>Modification Order 2：…</p>
  *
  * @author <a href="wubin3347@gmail.com">wubin</a>
  * @version 1.0.0
@@ -87,6 +87,12 @@ public class Car implements Serializable {
      */
     @Column(name = "gmt_modified")
     private Date gmtModified;
+
+    /**
+     * 用户ID
+     */
+    @Column(name = "user_id")
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -182,5 +188,13 @@ public class Car implements Serializable {
 
     public void setCarInsuranceCompanyId(Long carInsuranceCompanyId) {
         this.carInsuranceCompanyId = carInsuranceCompanyId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

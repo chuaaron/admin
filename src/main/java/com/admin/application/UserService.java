@@ -1,25 +1,20 @@
 package com.admin.application;
 
-import java.util.Date;
-import java.util.List;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-
 import com.admin.domain.modle.SelectRole;
 import com.admin.domain.modle.User;
 import com.admin.domain.repository.RoleRepository;
 import com.admin.domain.repository.UserRepository;
 import com.admin.domain.service.RoleSelectService;
+import com.admin.security.Md5PasswordEncoder;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.*;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import java.util.Date;
+import java.util.List;
 
 
 /**

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.admin.mybatis.mapper.StoreMapper" >
+  <resultMap id="baseResultMap" type="com.admin.mybatis.domain.Store" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <select id="selectNearByStore" resultMap="baseResultMap" parameterType="com.admin.mybatis.domain.Store" >
+    SELECT
+     id, store_name,longitude,latitude
+    FROM
+      car_store
+    WHERE
+    <if test="latitude !=null and longitude != null">
+        getDistance(#{latitude},#{longitude}, ROUND(IF(record.latitude IS NULL,0,record.latitude),10), ROUND(IF(record.longitude IS NULL,0,record.longitude),10)) distance
+    </if>
+    LIMIT 1
+  </select>
+
+</mapper>

@@ -1,7 +1,6 @@
 package com.admin.mybatis.domain;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,14 +10,14 @@ import java.util.Date;
  * <p>Copyright(c) 2017-2019 lyzb.com Inc. All Rights Reserved.</p>
  * <p>Other: </p>
  * <p>Date：2018-04-19 21:17 </p>
- * <p>Modification Record 1: </p>
+ * <p>Modification Order 1: </p>
  * <pre>
  *  Modified Date：
  *  Version：
  *  Modifier：
  *  Modification Content：
  * </pre>
- * <p>Modification Record 2：…</p>
+ * <p>Modification Order 2：…</p>
  *
  * @author <a href="wubin3347@gmail.com">wubin</a>
  * @version 1.0.0
@@ -26,7 +25,6 @@ import java.util.Date;
 @Table(name = "rcwl_user")
 public class User implements Serializable {
 
-    @Id
     @Column(name = "id")
     private Long id;
     /**

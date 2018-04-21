@@ -1,5 +1,8 @@
 package com.admin.wechat.handler;
 
+import com.admin.mybatis.domain.User;
+import com.admin.mybatis.util.PKGenerator;
+import com.admin.service.UserInfoService;
 import com.admin.wechat.builder.TextBuilder;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
@@ -7,6 +10,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -16,6 +20,10 @@ import java.util.Map;
  */
 @Component
 public class SubscribeHandler extends AbstractHandler {
+
+
+  @Autowired
+  private UserInfoService userInfoService;
 
   @Override
   public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -29,6 +37,17 @@ public class SubscribeHandler extends AbstractHandler {
         .userInfo(wxMessage.getFromUser(), null);
 
     if (userWxInfo != null) {
+      User user = new User();
+      user.setId(PKGenerator.getInstance().generateKey());
+      user.setCity(userWxInfo.getCity());
+      user.setCountry(userWxInfo.getCountry());
+      user.setProvince(userWxInfo.getProvince());
+      user.setUserHeadImgUrl(userWxInfo.getHeadImgUrl());
+      user.setUserNickName(userWxInfo.getNickname());
+      user.setUserOpenid(userWxInfo.getOpenId());
+      user.setUserSex(userWxInfo.getSex());
+
+      userInfoService.saveUserInfo(user);
       // TODO 可以添加关注用户到本地
     }
 

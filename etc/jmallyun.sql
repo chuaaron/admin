@@ -55,6 +55,7 @@ CREATE TABLE `insurance_company` (
 DROP TABLE IF EXISTS `rcwl_car`;
 CREATE TABLE `rcwl_car` (
   `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL COMMIT '用户ID',
   `car_series` bigint(20) NOT NULL COMMENT '车系列',
   `car_type` bigint(20) DEFAULT NULL COMMENT '车型',
   `car_number_region` bigint(20) DEFAULT NULL COMMENT '牌照所属区域(渝A),ID',
@@ -88,3 +89,36 @@ CREATE TABLE `rcwl_user` (
   `gmt_modifyed` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `consumption_record`;
+CREATE TABLE `car_order` (
+  `id` bigint(20) NOT NULL,
+  `project_id` bigint(20) NOT NULL ,
+  `project_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '项目名称',
+  `order_price` decimal(10, 2) DEFAULT NULL COMMENT '订单价格',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户名',
+  `emp_id` bigint(11) DEFAULT NULL COMMENT '服务人员Id',
+  `emp_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '服务人员',
+  `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
+  `car_id` bigint(20) DEFAULT NULL COMMENT '车辆ID',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+DROP TABLE IF EXISTS `car_project`;
+CREATE TABLE `car_project`  (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `price` decimal(10, 2) DEFAULT NULL,
+  `gmt_create` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+DROP TABLE IF EXISTS `car_store`;
+CREATE TABLE `car_store`(
+  `id` int(11) NOT NULL,
+  `store_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `longitude` float(15, 5) DEFAULT NULL COMMENT '经度',
+  `latitude` float(15, 5) DEFAULT NULL COMMENT '纬度',
+  `gmt_create` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;

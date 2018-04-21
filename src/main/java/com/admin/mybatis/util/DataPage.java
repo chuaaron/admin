@@ -1,15 +1,8 @@
 package com.admin.mybatis.util;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * 返回给前端的分页对象DTO
@@ -21,31 +14,21 @@ import java.util.function.Function;
 public class DataPage<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 当前页
-     */
+    //当前页
     private int pageNum;
-    /**
-     * 每页的数量
-     */
+    //每页的数量
     private int pageSize;
-    /**
-     * 总记录数
-     */
+    //总记录数
     private long total;
-    /**
-     * 总页数
-     */
+    //总页数
     private int pages;
-    /**
-     * 结果集
-     */
+    //结果集
     private List<T> list;
 
-    public DataPage() {
+    public DataPage(){
     }
 
-    public DataPage(Page<T> page) {
+    public DataPage(org.springframework.data.domain.Page<T> page){
         this.pageNum = page.getNumber() < 0 ? 1 : page.getNumber() + 1;
         this.pageSize = page.getSize();
         this.total = page.getTotalElements();
@@ -53,13 +36,10 @@ public class DataPage<T> implements Serializable {
         this.list = page.getContent();
     }
 
-    //  public DataPage(PageInfo<T> pageInfo){
-    //    this.pageNum = pageInfo.getPageNum();
-    //    this.pageSize = pageInfo.getSize();
-    //    this.total = pageInfo.getTotal();
-    //    this.pages = pageInfo.getPages();
-    //    this.list = pageInfo.getList();
-    //  }
+    public static <X> DataPage<X> covert(DataPage page, List<X> data){
+        page.setList(data);
+        return page;
+    }
 
     public int getPageNum() {
         return pageNum;
@@ -102,42 +82,31 @@ public class DataPage<T> implements Serializable {
     }
 
 
-    public <X> DataPage<X> transform(List<X> data) {
-        return convert(this, data);
-    }
-
-    public static <X> DataPage<X> convert(DataPage page, List<X> data) {
-        page.setList(data);
-        return page;
-    }
-
-    public static <T> DataPage<T> from(Page<T> page) {
-        return new DataPage<>(page);
-    }
-
-    //  public static <T> DataPage<T> from(PageInfo<T> pageInfo){
-    //    return new DataPage<>(pageInfo);
-    //  }
 
 
-    public static <T> Page<T> getEmptyPage() {
-        return emptyPage;
-    }
 
 
-    public static <T> DataPage<T> getEmpty() {
+
+
+
+
+
+
+
+
+    public static <T> DataPage<T> getEmpty(){
         return empty;
     }
 
     private static final DataPage empty = new EmptyDataPage<>();
 
-    private static class EmptyDataPage<T> extends DataPage<T> {
+    private static class EmptyDataPage<T> extends DataPage<T>{
         private static final long serialVersionUID = 1L;
         private int pageNum;
         private int pageSize;
         private long total;
         private int pages;
-        private List<T> list = Collections.unmodifiableList(new ArrayList<>());
+        private List<T> list = Collections.emptyList();
 
         @Override
         public int getPageNum() {
@@ -189,88 +158,4 @@ public class DataPage<T> implements Serializable {
             throw new UnsupportedOperationException();
         }
     }
-
-    private static final Page emptyPage = new Page() {
-        List content = Collections.unmodifiableList(new ArrayList<>());
-
-        @Override
-        public int getTotalPages() {
-            return 0;
-        }
-
-        @Override
-        public long getTotalElements() {
-            return 0;
-        }
-
-        @Override
-        public Page map(Function function) {
-            return null;
-        }
-
-        @Override
-        public int getNumber() {
-            return 0;
-        }
-
-        @Override
-        public int getSize() {
-            return 0;
-        }
-
-        @Override
-        public int getNumberOfElements() {
-            return 0;
-        }
-
-        @Override
-        public List getContent() {
-            return content;
-        }
-
-        @Override
-        public boolean hasContent() {
-            return false;
-        }
-
-        @Override
-        public Sort getSort() {
-            return null;
-        }
-
-        @Override
-        public boolean isFirst() {
-            return false;
-        }
-
-        @Override
-        public boolean isLast() {
-            return false;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return false;
-        }
-
-        @Override
-        public boolean hasPrevious() {
-            return false;
-        }
-
-        @Override
-        public Pageable nextPageable() {
-            return null;
-        }
-
-        @Override
-        public Pageable previousPageable() {
-            return null;
-        }
-
-        @Override
-        public Iterator iterator() {
-            return null;
-        }
-    };
 }

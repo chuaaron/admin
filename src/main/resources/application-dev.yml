@@ -19,9 +19,9 @@ spring:
   application:
     name: admin
   datasource:
-    url: jdbc:mysql://localhost:3307/admin?characterEncoding=utf-8
+    url: jdbc:mysql://192.168.0.150:3306/lyzb_lbs?characterEncoding=utf-8
     username: root
-    password: 123456
+    password: Aa123456
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

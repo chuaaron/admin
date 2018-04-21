@@ -93,6 +93,7 @@ INSERT INTO `role_menu` VALUES ('f1d07c8f-57e9-4e00-a03f-348a96cd54e2', 'menu');
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` varchar(50) NOT NULL COMMENT '主键ID',
+  `stroe_id` int(10) NOT NULL COMMENT '店铺ID',
   `username` varchar(20) NOT NULL COMMENT '登录名称',
   `password` varchar(32) NOT NULL COMMENT '密码',
   `email` varchar(60) DEFAULT NULL COMMENT '邮箱',
@@ -107,9 +108,9 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'root', '5442b02dabc5ed9401be4dfe1ca8adb9', 'jonsychen@hotmail.com', 'r', '0', '2016-09-27 19:53:20', '2016-09-27 19:53:22');
-INSERT INTO `user` VALUES ('8891e12f-81a7-43cd-8ab8-4accdf141f96', 'jonsy', '2e9ca4d0b1a586fd80bc2ba782ac36bc', 'jonsychen@hotmail.com', '0', '0', '2016-10-31 21:16:47', null);
-INSERT INTO `user` VALUES ('aaf62456-d96c-4aae-bff0-90330a7d7a02', 'frank', '52d76781a799f857f35e3bb50c94c21e', 'jonsychen@hotmail.com', '0', '0', '2016-11-04 18:12:34', null);
+INSERT INTO `user` VALUES ('1', 2,'root', '5442b02dabc5ed9401be4dfe1ca8adb9', 'jonsychen@hotmail.com', 'r', '0', '2016-09-27 19:53:20', '2016-09-27 19:53:22');
+INSERT INTO `user` VALUES ('8891e12f-81a7-43cd-8ab8-4accdf141f96',2, 'jonsy', '2e9ca4d0b1a586fd80bc2ba782ac36bc', 'jonsychen@hotmail.com', '0', '0', '2016-10-31 21:16:47', null);
+INSERT INTO `user` VALUES ('aaf62456-d96c-4aae-bff0-90330a7d7a02',2,'frank', '52d76781a799f857f35e3bb50c94c21e', 'jonsychen@hotmail.com', '0', '0', '2016-11-04 18:12:34', null);
 
 -- ----------------------------
 -- Table structure for `user_role`
@@ -128,6 +129,5 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` VALUES ('1', '1');
 INSERT INTO `user_role` VALUES ('8891e12f-81a7-43cd-8ab8-4accdf141f96', '1');
 INSERT INTO `user_role` VALUES ('aaf62456-d96c-4aae-bff0-90330a7d7a02', 'f1d07c8f-57e9-4e00-a03f-348a96cd54e2');
-
 
 COMMIT;
